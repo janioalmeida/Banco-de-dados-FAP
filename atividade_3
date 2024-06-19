@@ -1,0 +1,80 @@
+CREATE DATABASE startup;
+
+use startup;
+
+CREATE TABLE membros(
+membro_id INT PRIMARY KEY,
+nome VARCHAR(20),
+cargo VARCHAR(50)
+);
+
+ALTER TABLE membros add cargo varchar(50);
+
+
+ALTER TABLE membros MODIFY cargo varchar(60);
+
+
+CREATE TABLE tarefas(
+tarefa_id INT PRIMARY KEY,
+descricao VARCHAR(50),
+membro_id INT,
+FOREIGN KEY (membro_id) REFERENCES
+membros(membro_id)
+);
+
+INSERT INTO membros(membro_id, nome, cargo) VALUES
+(1, "Paulo", "Programador 1"),
+(2, "André", "Progrmador 2");
+
+DELETE FROM membros WHERE membros.membro_id = 1;
+
+DELETE FROM tarefas WHERE tarefas.tarefa_id = 1;
+
+INSERT INTO tarefas(tarefa_id, descricao, membro_id)
+VALUES (1, "Criar a classe produto", 1);
+
+SELECT nome, cargo FROM membros;
+SELECT descricao FROM tarefas;
+
+#Como recuperar os dados nome do membro e a tarefa atribuida a ele?
+
+SELECT membros.nome, tarefas.descricao
+FROM membros
+INNER JOIN tarefas
+ON membros.membro_id = tarefas.tarefa_id;
+
+alter table membros add genero char(10);
+ALTER TABLE tarefas ADD data_inicio DATE;
+ALTER TABLE tarefas ADD data_Final DATE;
+
+select * from membros;
+select * from tarefas;
+
+INSERT into membros(membro_id, nome, cargo, genero)
+VALUES(3, 'Luiz', 'Analista', 'F');
+INSERT into membros(membro_id, nome, cargo, genero)
+VALUES(4, 'João Silva', 'Desenvolvedor', 'M');
+INSERT into membros(membro_id, nome, cargo, genero)
+VALUES(5, ' Maria Santos ', 'Analista de Banco de Dados', 'F');
+INSERT into membros(membro_id, nome, cargo, genero)
+VALUES(6, 'Pedro Oliveira', ' Engenheiro de Software', 'M');
+INSERT into membros(membro_id, nome, cargo, genero)
+VALUES(7, 'Luiz Carlos', 'Engenheiro de Software', 'M');
+INSERT into membros(membro_id, nome, cargo, genero)
+VALUES(8, 'Ana Costas', 'Administrador de Redes', 'F');
+insert INTO `startup`.`membros` (`membro_id`, `nome`, `cargo`, `genero`) VALUES ('9', 'Carlos Souza', 'Especialista em Segurança da Informação', 'M');
+
+UPDATE `startup`.`membros` SET `genero` = 'M' WHERE (`membro_id` = '1');
+UPDATE `startup`.`membros` SET `genero` = 'M' WHERE (`membro_id` = '2');
+UPDATE `startup`.`membros` SET `genero` = 'M' WHERE (`membro_id` = '3');
+UPDATE `startup`.`membros` SET `genero` = 'M' WHERE (`membro_id` = '7');
+
+select * from membros where genero = 'F';
+
+INSERT INTO tarefas(tarefa_id, descricao,data_inicio, data_final, membro_id)
+VALUES (1, 'Criar a classe produto', '2024-06-19', '2024-06-19',1);
+
+UPDATE `startup`.`tarefas` SET `membro_id` = '2' WHERE (`tarefa_id` = '2');
+INSERT INTO `startup`.`tarefas` (`tarefa_id`, `descricao`, `membro_id`, `data_inicio`, `data_Final`) VALUES ('3', 'Implementar melhorias na interface do usuário', '3', '2024-06-19', '2024-06-19');
+INSERT INTO `startup`.`tarefas` (`tarefa_id`, `descricao`, `membro_id`, `data_inicio`, `data_Final`) VALUES ('4', 'Testar e validar integração com API externa..', '4', '2024-06-19', '2024-06-19');
+INSERT INTO `startup`.`tarefas` (`tarefa_id`, `descricao`, `membro_id`, `data_inicio`, `data_Final`) VALUES ('5', 'Realizar manutenção preventiva nos servido', '5' , '2024-06-19', '2024-06-19');
