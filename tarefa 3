@@ -1,0 +1,97 @@
+CREATE DATABASE startup;
+
+use startup;
+
+CREATE TABLE membros(
+membro_id INT PRIMARY KEY,
+nome VARCHAR(20),
+cargo VARCHAR(20)
+);
+
+create table tarefas(
+tarefa_id int primary key,
+descricao VARCHAR(50),
+membro_id int,
+foreign key (membro_id) references
+membros(membro_id)
+);
+
+alter table membros modify cargo varchar(60);
+
+INSERT INTO membros(membro_id, nome, cargo) VALUES(
+1, 'Paulo', 'Programador 1');
+
+insert into membros(membro_id, genero) value (1, 'M');
+
+INSERT INTO tarefas(tarefa_id, descricao, membro_id)
+VALUES (1, 'Criar a classe produto', 1);
+
+select nome, cargo from membros;
+
+SELECT descricao FROM tarefas;
+
+alter table membros add genero char(1);
+
+ALTER TABLE tarefas ADD data_inicio DATE;
+alter table tarefas add data_finalizacao DATE;
+
+
+
+select * from membros;
+select * from tarefas;
+
+UPDATE `startup`.`membros` SET `genero` = 'M' WHERE (`membro_id` = '1');
+INSERT INTO `startup`.`membros` (`membro_id`, `nome`, `cargo`, `genero`) VALUES ('3', 'João', 'banco de dados', 'M');
+INSERT INTO `startup`.`membros` (`membro_id`, `nome`, `cargo`, `genero`) VALUES ('2', 'Maria', 'programador 1', 'F');
+
+select * from tarefas;
+
+UPDATE `startup`.`tarefas` SET `data_inicio` = '2024-06-04', `data_finalizacao` = '2024-06-18' WHERE (`tarefa_id` = '1');
+
+select genero 'M' from membros;
+
+INSERT into membros(membro_id, nome, cargo, genero)
+VALUES(4, 'Luiz', 'Analista', 'M');
+
+insert into membros(membro_id, nome, cargo, genero)
+values(5, 'João Silva', 'Desenvolvedor Full Stack', 'M');
+
+insert into membros(membro_id, nome, cargo, genero)
+values(6, 'Maria Santos', 'Analista de Banco de Dados', 'F');
+
+insert into membros(membro_id, nome, cargo, genero)
+values(7, ' Pedro Oliveira', ' Engenheiro de Software', 'M');
+
+insert into membros(membro_id, nome, cargo, genero)
+values(8, 'Ana Costa', 'Administrador de Redes', 'F');
+
+insert into membros(membro_id, nome, cargo, genero)
+values(9, 'Carlos Souza', 'Especialista em Segurança da Informação', 'M');
+
+INSERT INTO tarefas(tarefa_id, descricao,  membro_id, data_inicio, data_finalizacao)
+VALUES (2, 'Desenvolver novo módulo de login para o sistema.', '2',  '2024-06-19', '2024-06-19');
+
+INSERT INTO tarefas(tarefa_id, descricao,  membro_id, data_inicio, data_finalizacao)
+VALUES (3, ' Implementar melhorias na interface do usuário', '3', '2024-06-19', '2024-06-19');
+
+INSERT INTO tarefas(tarefa_id, descricao,  membro_id, data_inicio, data_finalizacao)
+VALUES (4, 'Testar e validar integração com API externa..', '4',  '2024-06-19', '2024-06-19');
+
+INSERT INTO tarefas(tarefa_id, descricao,  membro_id, data_inicio, data_finalizacao)
+VALUES (5, ' Desenvolver novo módulo de login para o sistema.', '5', '2024-06-19', '2024-06-19');
+
+INSERT INTO tarefas(tarefa_id, descricao,  membro_id, data_inicio, data_finalizacao)
+VALUES (6, ' Desenvolver novo módulo de login para o sistema.', '7', '2024-06-19', '2024-06-19');
+
+INSERT INTO tarefas(tarefa_id, descricao,  membro_id, data_inicio, data_finalizacao)
+VALUES (7, ' Criar documentação técnica do projeto XYZ.', '8', '2024-06-19', '2024-06-19');
+
+INSERT INTO tarefas(tarefa_id, descricao,  membro_id, data_inicio, data_finalizacao)
+VALUES (8, ' Testar e validar integração com API externa.', '6', '2024-06-19', '2024-06-19');
+
+INSERT INTO tarefas(tarefa_id, descricao,  membro_id, data_inicio, data_finalizacao)
+VALUES (9, ' Implementar melhorias na interface do usuário.', '9', '2024-06-19', '2024-06-19');
+
+
+select * from membros where genero = 'F';
+UPDATE `startup`.`membros` SET `nome` = 'Maria oliveira' WHERE (`membro_id` = '2');
